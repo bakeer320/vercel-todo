@@ -4,8 +4,10 @@ const cors = require("cors")
 const pool = require("./db")
 
 //middleware
-app.use(cors())
+app.use(cors({origin: ["http://localhost:3000", "https://pern-task-app.onrender.com"],}))
 app.use(express.json())
+
+const PORT = process.env.PORT || 5000;
 
 app.post("/todos", async(req,res) => {
     try {
@@ -58,6 +60,6 @@ app.delete("/todos/:id", async (req,res) => {
     }
 })
 
-app.listen(5000, () => {
-    console.log("server has started on port 5000");
-})
+app.listen(PORT, () => {
+    console.log(`Server has started on port ${PORT}`);
+  });

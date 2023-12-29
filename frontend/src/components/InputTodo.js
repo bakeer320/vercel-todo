@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 const InputTodo = ({ onTodoAdded }) => {
   const [description, setDescription] = useState("");
 
@@ -7,7 +8,7 @@ const InputTodo = ({ onTodoAdded }) => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await fetch("http://localhost:5000/todos", {
+      const response = await fetch(`${backendUrl}/todos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

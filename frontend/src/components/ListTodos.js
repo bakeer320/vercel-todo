@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import EditTodo from "./EditTodo";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 const ListTodos = ({ onTodoDeleted }) => {
   const [todos, setTodos] = useState([]);
 
   async function getTodos() {
     try {
-      const res = await fetch("http://localhost:5000/todos");
+      const res = await fetch(`${backendUrl}/todos`);
       const todoArray = await res.json();
       setTodos(todoArray);
     } catch (error) {
@@ -16,7 +17,7 @@ const ListTodos = ({ onTodoDeleted }) => {
 
   async function deleteTodo(id) {
     try {
-      const res = await fetch(`http://localhost:5000/todos/${id}`, {
+      const res = await fetch(`${backendUrl}/todos/${id}`, {
         method: "DELETE",
       });
 

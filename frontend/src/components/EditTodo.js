@@ -1,5 +1,11 @@
 import React, { Fragment, useState } from "react";
 
+// Example in a React component
+
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+// Later in your code, use the `backendUrl` variable to make API calls to the backend.
+
 const EditTodo = ({ todo }) => {
   const [description, setDescription] = useState(todo.description);
 
@@ -10,7 +16,7 @@ const EditTodo = ({ todo }) => {
     try {
       const body = { description };
       const response = await fetch(
-        `http://localhost:5000/todos/${todo.todo_id}`,
+        `${backendUrl}/todos/${todo.todo_id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
